@@ -14,13 +14,13 @@ export default function Login(): JSX.Element {
     pass: "invalid password",
   };
 
-  async function handleSubmit(){
+  async function handleSubmit(event: { preventDefault: () => void; }){
     //Prevent page reload
-    // event.preventDefault();
+    event.preventDefault();
 
     var { uname, pass } = document.forms[0];
 
-    console.log("login: ", uname.value, pass.value);
+    console.log("login: ", uname.value, pass.value, `${backendURL}login`);
     const user = {
       username: uname.value,
       password: pass.value,
@@ -46,7 +46,7 @@ export default function Login(): JSX.Element {
       >
         <h3>Register</h3>
       </NavLink>
-        <form className="" onSubmit={handleSubmit}>
+        <form className="">
             <h3 className="text-center text-3xl font-bold">Login</h3>
           <div className="input-container my-6">
             <input type="text" name="uname" placeholder="UserName" required />
@@ -65,6 +65,7 @@ export default function Login(): JSX.Element {
             <input
               type="submit"
               className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg"
+              onClick={handleSubmit}
             />
           </div>
         </form>

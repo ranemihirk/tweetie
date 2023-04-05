@@ -6,7 +6,7 @@ import { Navigate, NavLink } from "react-router-dom";
 import { AuthContext } from "./contexts/AuthContext";
 import logo from "./../assets/parallax-img.jpg";
 import { backendURL } from "./../index";
-
+let responseStatus = false;
 export default function DefaultIndex(): JSX.Element {
   const [errorMessages, setErrorMessages] = useState({ name: "", message: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -21,6 +21,16 @@ export default function DefaultIndex(): JSX.Element {
 //     name === errorMessages.name && (
 //       <div className="error">{errorMessages.message}</div>
 //     );
+
+async function getUser(){
+  
+  if(!responseStatus){
+    const response = await axios.post(`${backendURL}`, user);
+      console.log("response: ", response);
+      setUser(response.data.user);
+      responseStatus = true;
+  }
+}
 
   async function handleSubmit() {
     //Prevent page reload
@@ -44,6 +54,7 @@ export default function DefaultIndex(): JSX.Element {
     }
     // setErrorMessages({ name: "uname", message: errors.uname });
   };
+  // getUser();
   return (
     <div className="Index">
       <h1>Index</h1>
