@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "./../contexts/AuthContext";
 import { Navigate, NavLink } from "react-router-dom";
+import { backendURL } from "./../../index";
 
 export default function Login(): JSX.Element {
   const [errorMessages, setErrorMessages] = useState({ name: "", message: "" });
@@ -25,7 +26,7 @@ export default function Login(): JSX.Element {
       password: pass.value,
     };
     try {
-      const response = await axios.post("http://localhost:3001/login", user);
+      const response = await axios.post(`${backendURL}login`, user);
       console.log(response);
       setUser(response.data.user);
       console.log("user: ", user);

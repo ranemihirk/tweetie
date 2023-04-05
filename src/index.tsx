@@ -6,6 +6,8 @@ import useLocalStorage from "./js/hooks/useLocalStorage";
 import reportWebVitals from "./reportWebVitals";
 const MyRouter = lazy(() => import(/* webpackChunkName: "VidtuRouter" */ './router'));
 
+export const backendURL = "https://tweetie-backend.vercel.app/";
+
 const root = createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
