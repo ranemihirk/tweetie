@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useContext, FormHTMLAttributes, useRef } from "react";
+import useMediaQuery from '@mui/material/useMediaQuery';
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Navigate, NavLink } from "react-router-dom";
@@ -10,12 +11,13 @@ import { backendURL } from "./../index";
 
 let responseStatus = false;
 const alertClassState = {
-	"none": "hidden",
-	"success": "alert alert-success",
-	"error": "alert alert-info"
+  none: "hidden",
+  success: "alert alert-success",
+  error: "alert alert-info",
 };
 
 export default function DefaultIndex(): JSX.Element {
+	const isLargeScreen = useMediaQuery('(min-width: 1024px)');
   const { user, setUser } = useContext(AuthContext);
   const [alertClass, setAlertClass] = useState(alertClassState.none);
   const userAlertRef = useRef(null);
@@ -42,24 +44,17 @@ export default function DefaultIndex(): JSX.Element {
 
     if (uname.value === "ranemihirk" && pass.value === "testpassword") {
       setUser(userData);
-	//   userAlertRef.current
+      //   userAlertRef.current
+    } else {
+      setAlertClass(alertClassState.error);
+      setTimeout(() => setAlertClass(alertClassState.none), 3000);
     }
-	else{
-		setAlertClass(alertClassState.error);
-		setTimeout(
-			() => setAlertClass(alertClassState.none), 
-			3000
-		  );
-	}
   };
 
   return (
     <div className="Index min-h-screen flex flex-wrap items-stretch">
-
       <div className="toast toast-top toast-end">
-        <div className={alertClass}>
-            User not found.
-        </div>
+        <div className={alertClass}>User not found.</div>
       </div>
 
       <div className="flex w-full justify-center py-4 bg-new-black">
@@ -68,9 +63,9 @@ export default function DefaultIndex(): JSX.Element {
 
       <div className="hero mx-auto bg-base-200">
         <div
-          className={`hero-content h-full flex flex-row-reverse justify-evenly items-center bg-quote bg-center bg-fixed container mx-auto `}
+          className={`hero-content h-full flex ${!isLargeScreen && "flex-wrap"} flex-row-reverse justify-evenly items-center bg-quote bg-center bg-fixed container mx-auto `}
         >
-          <div className="text-center lg:text-left p-10 w-3/5">
+          <div className={`text-center lg:text-left ${isLargeScreen ? "p-10 w-3/5" : "p-4"}`}>
             <h1 className="text-5xl font-bold">Login now!</h1>
             <p className="py-6">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
@@ -169,7 +164,6 @@ export default function DefaultIndex(): JSX.Element {
           </div>
         </div>
       </footer>
-
     </div>
   );
 }
