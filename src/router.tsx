@@ -6,6 +6,9 @@ const Layout = lazy(() => import(/* webpackChunkName: "CoreLayout" */ './js/Layo
 const Home = lazy(
 	() => import(/* webpackChunkName: "AdminPage" */ './js/Home')
 );
+const Homepage = lazy(
+	() => import(/* webpackChunkName: "AdminPage" */ './js/Homepage')
+);
 const Login = lazy(() => import(/* webpackChunkName: "Login" */ './js/Auth/Login'));
 
 export default function MyRouter() {
@@ -22,7 +25,7 @@ export default function MyRouter() {
 					path: '',
 					element: user ? (
 						<Suspense fallback={<>...</>}>
-							<Home />
+							<Homepage />
 						</Suspense>
 					) : (
 						<Suspense fallback={<>...</>}>

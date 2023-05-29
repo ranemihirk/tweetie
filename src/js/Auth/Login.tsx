@@ -16,25 +16,26 @@ export default function Login(): JSX.Element {
 
   async function handleSubmit(event: { preventDefault: () => void; }){
     //Prevent page reload
-    event.preventDefault();
+    // event.preventDefault();
 
-    var { uname, pass } = document.forms[0];
+    // var { uname, pass } = document.forms[0];
 
-    console.log("login: ", uname.value, pass.value, `${backendURL}login`);
-    const user = {
-      username: uname.value,
-      password: pass.value,
-    };
-    try {
-      const response = await axios.post(`${backendURL}login`, user);
-      console.log(response);
-      setUser(response.data.user);
-      console.log("user: ", user);
-      <Navigate replace to="" />;
-    } catch (error) {
-      console.log(error);
-    }
+    // console.log("login: ", uname.value, pass.value, `${backendURL}login`);
+    // const user = {
+    //   username: uname.value,
+    //   password: pass.value,
+    // };
+    // try {
+    //   const response = await axios.post(`${backendURL}login`, user);
+    //   console.log(response);
+    //   setUser(response.data.user);
+    //   console.log("user: ", user);
+    //   <Navigate replace to="" />;
+    // } catch (error) {
+    //   console.log(error);
+    // }
     // setErrorMessages({ name: "uname", message: errors.uname });
+    
   };
 
   return (
