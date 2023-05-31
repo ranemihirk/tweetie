@@ -22,7 +22,7 @@ export default function TopNav({
         <Link
           to={"/"}
           title={`Tweetie Logo`}
-          className={`my-2 inline-flex h-full max-h-12 cursor-pointer justify-center xl:max-h-8`}
+          className={`m-2 inline-flex h-full max-h-12 cursor-pointer justify-center xl:max-h-8`}
         >
           <img
             src={isOpen ? logot : logotmobile}
