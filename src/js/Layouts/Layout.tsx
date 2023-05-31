@@ -17,9 +17,9 @@ export default function Layout(): JSX.Element {
   }
 
   return (
-    <div className="App min-h-screen max-h-screen min-w-screen max-w-screen">
+    <div className="App flex flex-col min-h-screen max-h-screen min-w-screen max-w-screen">
       {user && <TopNav isOpen={open} />}
-      <motion.div className="relative flex flex-row overflow-hidden">
+      <motion.div className="relative flex flex-row flex-1 overflow-hidden">
         {user && <SideBar isOpen={open} handleOpen={setOpen} />}
         <MainBody isOpen={open} setOpen={setOpen} />
       </motion.div>

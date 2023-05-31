@@ -52,11 +52,12 @@ export default function SideBar({
   }
   return (
     <motion.div
-      className="sidebar flex flex-wrap bg-new-black text-new-white dark:bg-new-white dark:text-new-black"
-      initial={{ width: "auto", opacity: 0, height: "calc(100vh - 4rem)" }}
+      className="sidebar flex flex-wrap flex-1 bg-new-black text-new-white dark:bg-new-white dark:text-new-black"
+      initial={{ width: "auto", opacity: 0, }}
       animate={{
         opacity: 1,
         width: isOpen ? "20vw" : "auto",
+        minWidth: isOpen ? "20vw" : "auto",
       }}
       transition={{ duration: 0.25 }}
     >
