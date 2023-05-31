@@ -72,7 +72,27 @@ export default function DefaultIndex(): JSX.Element {
             </Card>
           ))}
         </div>
-        <div className="w-1/3 p-4">who to follow</div>
+        <div className="w-1/3 p-4">
+          <div className="shadow-md rounded-md p-4">
+            <h4 className="text-xl font-bold mb-2">Who to follow</h4>
+            {new Array(3).fill(0).map((cell, idx) => (
+              <div className="flex justify-between rounded-md ease-in-out duration-300 px-2 py-3 hover:bg-gray-100">
+                <div className="flex items-center">
+                  <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                    MR
+                  </Avatar>
+                  <div className="ml-2">
+                    <h5 className="font-semibold">Mihir Rane</h5>
+                    <p>@ranemihirk</p>
+                  </div>
+                </div>
+                <button className="bg-new-black text-new-white rounded-full px-4 ease-in-out duration-300 hover:bg-gray-800">
+                  Follow
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
