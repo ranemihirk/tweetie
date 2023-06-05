@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useContext, FormHTMLAttributes, useRef } from "react";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Navigate, NavLink } from "react-router-dom";
@@ -8,6 +8,7 @@ import { AuthContext } from "./contexts/AuthContext";
 import logo from "./../assets/logo-white.png";
 import logot from "./../assets/logo-t-white.png";
 import { backendURL } from "./../index";
+import data from "./../data.json";
 
 let responseStatus = false;
 const alertClassState = {
@@ -17,7 +18,7 @@ const alertClassState = {
 };
 
 export default function DefaultIndex(): JSX.Element {
-	const isLargeScreen = useMediaQuery('(min-width: 1024px)');
+  const isLargeScreen = useMediaQuery("(min-width: 1024px)");
   const { user, setUser } = useContext(AuthContext);
   const [alertClass, setAlertClass] = useState(alertClassState.none);
   const userAlertRef = useRef(null);
@@ -38,13 +39,24 @@ export default function DefaultIndex(): JSX.Element {
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    console.log("handleSubmit: ", event);
     const { uname, pass } = document.forms[0];
-    console.log("form data: ", uname.value, pass.value);
+    const userData = data.users;
 
-    if (uname.value === "ranemihirk" && pass.value === "testpassword") {
-      setUser(userData);
-      //   userAlertRef.current
+    let currentUser = {};
+
+    userData.map((item) => {
+      let current = {};
+      if (
+        (item.username === uname.value || item.email === uname.value) &&
+        item.password === pass.value
+      ) {
+        currentUser = item;
+        return current;
+      }
+    });
+
+    if (JSON.stringify(currentUser) !== "{}") {
+      setUser(currentUser);
     } else {
       setAlertClass(alertClassState.error);
       setTimeout(() => setAlertClass(alertClassState.none), 3000);
@@ -63,9 +75,15 @@ export default function DefaultIndex(): JSX.Element {
 
       <div className="hero mx-auto bg-base-200">
         <div
-          className={`hero-content h-full flex ${!isLargeScreen && "flex-wrap"} flex-row-reverse justify-evenly items-center bg-quote bg-center bg-fixed container mx-auto `}
+          className={`hero-content h-full flex ${
+            !isLargeScreen && "flex-wrap"
+          } flex-row-reverse justify-evenly items-center bg-quote bg-center bg-fixed container mx-auto `}
         >
-          <div className={`text-center lg:text-left ${isLargeScreen ? "p-10 w-3/5" : "p-4"}`}>
+          <div
+            className={`text-center lg:text-left ${
+              isLargeScreen ? "p-10 w-3/5" : "p-4"
+            }`}
+          >
             <h1 className="text-5xl font-bold">Login now!</h1>
             <p className="py-6">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda

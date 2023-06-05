@@ -41,6 +41,14 @@ export default function MyRouter() {
 						</Suspense>
 					),
 				},
+				{
+					path: ':username',
+					element: (
+						<Suspense fallback={<>...</>}>
+							<Login />
+						</Suspense>
+					),
+				},
 			],
 		},
 	]);
