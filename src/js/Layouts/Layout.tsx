@@ -23,11 +23,11 @@ export default function Layout(): JSX.Element {
       {user && <TopNav isOpen={open} />}
       <motion.div className="relative flex flex-row flex-1 overflow-hidden">
         {user && <SideBar isOpen={open} handleOpen={setOpen} />}
-        <div className="flex h-full">
-          <div className="lg:w-2/3 border-r-2 p-2 lg:p-4">
+        <div className="flex w-full">
+          <div className="lg:min-w-2/3 lg:w-2/3 lg:max-w-2/3 border-r-2 p-2 lg:p-4 overflow-hidden overflow-y-auto custom-scroll">
             <MainBody isOpen={open} setOpen={setOpen} />
           </div>
-          <div className="lg:w-1/3 p-4 hidden md:block">
+          <div className="lg:min-w-1/3 lg:w-1/3 lg:max-w-1/3 p-4 hidden md:block">
             <div className="shadow-md rounded-md p-4">
               <h4 className="text-xl font-bold mb-2">Who to follow</h4>
               {new Array(3).fill(0).map((cell, idx) => (

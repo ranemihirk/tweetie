@@ -33,7 +33,7 @@ const sidebarMenu = [
   },
   {
     title: "Profile",
-    link: "/",
+    link: "/ranemihirk",
     logo: <FontAwesomeIcon icon={faUser} />,
   },
   {
@@ -58,6 +58,7 @@ export default function SideBar({
         opacity: 1,
         width: isOpen ? "20vw" : "auto",
         minWidth: isOpen ? "20vw" : "auto",
+        maxWidth: isOpen ? "20vw" : "auto",
       }}
       transition={{ duration: 0.25 }}
     >
