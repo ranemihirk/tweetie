@@ -10,6 +10,9 @@ const Homepage = lazy(
 	() => import(/* webpackChunkName: "AdminPage" */ './js/Homepage')
 );
 const Login = lazy(() => import(/* webpackChunkName: "Login" */ './js/Auth/Login'));
+const Profile = lazy(
+	() => import(/* webpackChunkName: "AdminPage" */ './js/Profile')
+);
 
 export default function MyRouter() {
 	const { user } = useContext(AuthContext);
@@ -45,7 +48,7 @@ export default function MyRouter() {
 					path: ':username',
 					element: (
 						<Suspense fallback={<>...</>}>
-							<Login />
+							<Profile />
 						</Suspense>
 					),
 				},

@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { styled } from "@mui/material/styles";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import Post from "./Post";
 
 export default function DefaultIndex(): JSX.Element {
@@ -20,7 +21,7 @@ export default function DefaultIndex(): JSX.Element {
       <div>
         <div className="p-2 m-4 shadow-md rounded text-end">
           <textarea
-            className="textarea textarea-bordered w-full resize-none overflow-hidden overflow-y-auto border-1 p-1 focus:shadow-none focus:border-transparent focus:ring-offset-0 focus:ring-transparent focus:ring-offset-transparent h-20 lg:h-40"
+            className="textarea textarea-bordered w-full resize-none overflow-hidden overflow-y-auto border-1 p-2 focus:shadow-none focus:border-transparent focus:ring-offset-0 focus:ring-transparent focus:ring-offset-transparent h-20 lg:h-40"
             placeholder="Tweetie me..."
           ></textarea>
           <button className="btn mt-2 w-40 rounded-full">Tweetie</button>
@@ -32,18 +33,3 @@ export default function DefaultIndex(): JSX.Element {
     </div>
   );
 }
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
